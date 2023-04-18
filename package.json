@@ -1,0 +1,38 @@
+{
+  "name": "chameleon-material-demo",
+  "version": "0.0.1",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "copyAssets": "sh ./scripts/copyAssets.sh",
+    "start": "npm run copyAssets && npm run build:lib:dev && build-script",
+    "build": "pnpm run build:lib && pnpm run build:meta",
+    "build:lib": "cross-env LIB_NAME=comp  build-script --build",
+    "build:meta": "cross-env LIB_NAME=meta build-script --build",
+    "build:lib:dev": "cross-env DEV=true  LIB_NAME=comp build-script --build ",
+    "lint": "eslint --ext .tsx,.ts src/",
+    "prettier": "prettier --write ./src",
+    "test": "jest"
+  },
+  "dependencies": {
+    "antd": "^5.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@ant-design/icons": "^5.0.1",
+    "@chamn/build-script": "^0.0.10",
+    "@chamn/engine": "^0.0.10",
+    "@chamn/model": "^0.0.8",
+    "@chamn/render": "^0.0.8",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^3.1.0",
+    "cross-env": "^7.0.3",
+    "sass": "^1.62.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  }
+}
