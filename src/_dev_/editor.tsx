@@ -60,7 +60,7 @@ export const Editor = () => {
 
     // 获取 引擎 工作台对象
     const workbench = ctx.engine.getWorkbench();
-
+    workbench?.openLeftPanel('ComponentLib');
     // 自定义顶部 bar
     workbench?.replaceTopBarView(
       <div
@@ -200,3 +200,11 @@ export const Editor = () => {
     />
   );
 };
+
+if (import.meta.hot) {
+  // !!! do not delete newModule param, else hot reload will not trigger
+  import.meta.hot.accept(['../meta'], (newModule) => {
+    console.log('met change');
+    location.reload();
+  });
+}

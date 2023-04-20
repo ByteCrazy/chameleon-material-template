@@ -12,7 +12,23 @@ let buildConfig: any = {
       __PACKAGE_NAME__: JSON.stringify(require('./package.json').name),
       'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
     },
-    plugins: [monacoEditorPlugin({})],
+    plugins: [
+      monacoEditorPlugin({}),
+      {
+        name: 'hot-reload-component-lib',
+        configureServer(server) {
+          server.watcher
+            .add(['./public-dev/**/*'])
+            .on('change', (path, stats) => {
+              server.ws.send('materialComponent:change', {
+                msg: 'hello232323',
+                path,
+                stats,
+              });
+            });
+        },
+      },
+    ],
   },
 };
 
@@ -53,7 +69,7 @@ if (LIB_NAME) {
     // 额外的 vite 配置
     vite: {
       build: {
-        outDir: process.env.DEV ? 'publicDev' : 'dist',
+        outDir: process.env.DEV ? 'public-dev' : 'dist',
         copyPublicDir: false,
         emptyOutDir: false,
         assetFileNames: (assetInfo) => {
