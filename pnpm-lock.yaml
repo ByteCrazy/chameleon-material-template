@@ -19,14 +19,14 @@ devDependencies:
     specifier: ^0.0.10
     version: registry.npmmirror.com/@chamn/build-script@0.0.10(@babel/core@7.21.4)(@types/node@18.15.11)(postcss@8.4.22)(sass@1.62.0)
   '@chamn/engine':
-    specifier: ^0.0.8
-    version: registry.npmmirror.com/@chamn/engine@0.0.8(@types/node@18.15.11)
+    specifier: ^0.0.10
+    version: registry.npmmirror.com/@chamn/engine@0.0.10(@types/node@18.15.11)
   '@chamn/model':
-    specifier: ^0.0.8
-    version: registry.npmmirror.com/@chamn/model@0.0.8(@types/node@18.15.11)
+    specifier: ^0.0.10
+    version: registry.npmmirror.com/@chamn/model@0.0.10(@types/node@18.15.11)
   '@chamn/render':
-    specifier: ^0.0.8
-    version: registry.npmmirror.com/@chamn/render@0.0.8(@types/node@18.15.11)
+    specifier: ^0.0.10
+    version: registry.npmmirror.com/@chamn/render@0.0.10(@types/node@18.15.11)
   '@types/node':
     specifier: ^18.15.11
     version: registry.npmmirror.com/@types/node@18.15.11
@@ -42,6 +42,9 @@ devDependencies:
   cross-env:
     specifier: ^7.0.3
     version: registry.npmmirror.com/cross-env@7.0.3
+  react-router-dom:
+    specifier: ^6.10.0
+    version: registry.npmmirror.com/react-router-dom@6.10.0(react-dom@18.2.0)(react@18.2.0)
   sass:
     specifier: ^1.62.0
     version: registry.npmmirror.com/sass@1.62.0
@@ -51,6 +54,9 @@ devDependencies:
   vite:
     specifier: ^4.2.0
     version: registry.npmmirror.com/vite@4.2.1(@types/node@18.15.11)(sass@1.62.0)
+  vite-plugin-monaco-editor:
+    specifier: ^1.1.0
+    version: registry.npmmirror.com/vite-plugin-monaco-editor@1.1.0(monaco-editor@0.34.1)
 
 packages:
 
@@ -701,16 +707,16 @@ packages:
       - utf-8-validate
     dev: true
 
-  registry.npmmirror.com/@chamn/engine@0.0.8(@types/node@18.15.11):
-    resolution: {integrity: sha512-yrYlcIxK+NxPqzx0zO9wn9/0CSYmpVmbYFi+OJm14dKTEwndCLWW++TthumCMXgprCSRokxIIst7vNgFW3fkIQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@chamn/engine/-/engine-0.0.8.tgz}
-    id: registry.npmmirror.com/@chamn/engine/0.0.8
+  registry.npmmirror.com/@chamn/engine@0.0.10(@types/node@18.15.11):
+    resolution: {integrity: sha512-EoyTTXC33MJ8rNPi+4na6cvsyjLQLmu839PIkQckpi6dKRHHPxLrX7WqJUx58Mmyw4UQC21/mUpjISjgNuKl1A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@chamn/engine/-/engine-0.0.10.tgz}
+    id: registry.npmmirror.com/@chamn/engine/0.0.10
     name: '@chamn/engine'
-    version: 0.0.8
+    version: 0.0.10
     dependencies:
       '@ant-design/icons': registry.npmmirror.com/@ant-design/icons@4.8.0(react-dom@18.2.0)(react@18.2.0)
-      '@chamn/layout': registry.npmmirror.com/@chamn/layout@0.0.8(@types/node@18.15.11)
-      '@chamn/model': registry.npmmirror.com/@chamn/model@0.0.8(@types/node@18.15.11)
-      '@chamn/render': registry.npmmirror.com/@chamn/render@0.0.8(@types/node@18.15.11)
+      '@chamn/layout': registry.npmmirror.com/@chamn/layout@0.0.10(@types/node@18.15.11)
+      '@chamn/model': registry.npmmirror.com/@chamn/model@0.0.10(@types/node@18.15.11)
+      '@chamn/render': registry.npmmirror.com/@chamn/render@0.0.10(@types/node@18.15.11)
       '@dnd-kit/core': registry.npmmirror.com/@dnd-kit/core@6.0.8(react-dom@18.2.0)(react@18.2.0)
       '@dnd-kit/modifiers': registry.npmmirror.com/@dnd-kit/modifiers@6.0.1(@dnd-kit/core@6.0.8)(react@18.2.0)
       '@dnd-kit/sortable': registry.npmmirror.com/@dnd-kit/sortable@7.0.2(@dnd-kit/core@6.0.8)(react@18.2.0)
@@ -738,14 +744,14 @@ packages:
       - ts-node
     dev: true
 
-  registry.npmmirror.com/@chamn/layout@0.0.8(@types/node@18.15.11):
-    resolution: {integrity: sha512-Jy0vdf2a9xyA8l2RlWSEOTfJfqM8V93RCMf30AO6kC73bh+GWvg6MInLg+QOnYtngw3qrs89A/Bfiwqe3/1VLA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@chamn/layout/-/layout-0.0.8.tgz}
-    id: registry.npmmirror.com/@chamn/layout/0.0.8
+  registry.npmmirror.com/@chamn/layout@0.0.10(@types/node@18.15.11):
+    resolution: {integrity: sha512-SzzQNzQWylBUydfojQb8AREx50XPDdZPU1NU8t7Z4w9500By9SNNyaAV2USawXZ56iMBYF315UyeZw/Tt3iieA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@chamn/layout/-/layout-0.0.10.tgz}
+    id: registry.npmmirror.com/@chamn/layout/0.0.10
     name: '@chamn/layout'
-    version: 0.0.8
+    version: 0.0.10
     dependencies:
-      '@chamn/model': registry.npmmirror.com/@chamn/model@0.0.8(@types/node@18.15.11)
-      '@chamn/render': registry.npmmirror.com/@chamn/render@0.0.8(@types/node@18.15.11)
+      '@chamn/model': registry.npmmirror.com/@chamn/model@0.0.10(@types/node@18.15.11)
+      '@chamn/render': registry.npmmirror.com/@chamn/render@0.0.10(@types/node@18.15.11)
       lodash-es: registry.npmmirror.com/lodash-es@4.17.21
       mitt: registry.npmmirror.com/mitt@3.0.0
       react: registry.npmmirror.com/react@18.2.0
@@ -759,11 +765,11 @@ packages:
       - ts-node
     dev: true
 
-  registry.npmmirror.com/@chamn/model@0.0.8(@types/node@18.15.11):
-    resolution: {integrity: sha512-Y2NWaPcf0H/DVMHobWaHiCsI6bI+J3tSpsnvNuCgXCVhna1WYcoksxYBau969m5eZE/LXtgKt/BuOoV4RdCkJw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@chamn/model/-/model-0.0.8.tgz}
-    id: registry.npmmirror.com/@chamn/model/0.0.8
+  registry.npmmirror.com/@chamn/model@0.0.10(@types/node@18.15.11):
+    resolution: {integrity: sha512-pML1lpXSDPF6NyFXoOP1jETQ8tDtrSAZNHKWp5qWaBCvcwnnBAkcZUcPTOCT/UZBbXiQim7503uz7FEfBILmEg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@chamn/model/-/model-0.0.10.tgz}
+    id: registry.npmmirror.com/@chamn/model/0.0.10
     name: '@chamn/model'
-    version: 0.0.8
+    version: 0.0.10
     dependencies:
       html-tag-names: registry.npmmirror.com/html-tag-names@2.1.0
       jest: registry.npmmirror.com/jest@28.1.3(@types/node@18.15.11)(ts-node@10.9.1)
@@ -780,13 +786,13 @@ packages:
       - ts-node
     dev: true
 
-  registry.npmmirror.com/@chamn/render@0.0.8(@types/node@18.15.11):
-    resolution: {integrity: sha512-OVRttfuYVpRdOa0iZiH7lSjnMMaACh8iBxYTNis6EVlW4P6rqQ9Q5sG1wnsHrCm6ztvDnX7SBg947wARVD89bQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@chamn/render/-/render-0.0.8.tgz}
-    id: registry.npmmirror.com/@chamn/render/0.0.8
+  registry.npmmirror.com/@chamn/render@0.0.10(@types/node@18.15.11):
+    resolution: {integrity: sha512-m6Nc00hjJMUT+MgRN1h5kUtHpIs2C0U9GNwkKxkhGEgzn7epaza8KiZGlzgoLownzJedyQogpwkqnp6pJ+w1/g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@chamn/render/-/render-0.0.10.tgz}
+    id: registry.npmmirror.com/@chamn/render/0.0.10
     name: '@chamn/render'
-    version: 0.0.8
+    version: 0.0.10
     dependencies:
-      '@chamn/model': registry.npmmirror.com/@chamn/model@0.0.8(@types/node@18.15.11)
+      '@chamn/model': registry.npmmirror.com/@chamn/model@0.0.10(@types/node@18.15.11)
       cross-env: registry.npmmirror.com/cross-env@7.0.3
       html-tag-names: registry.npmmirror.com/html-tag-names@2.1.0
       loadjs: registry.npmmirror.com/loadjs@4.3.0-rc1
@@ -1701,6 +1707,13 @@ packages:
       rc-util: registry.npmmirror.com/rc-util@5.29.3(react-dom@18.2.0)(react@18.2.0)
       react: registry.npmmirror.com/react@18.2.0
       react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+
+  registry.npmmirror.com/@remix-run/router@1.5.0:
+    resolution: {integrity: sha512-bkUDCp8o1MvFO+qxkODcbhSqRa6P2GXgrGZVpt0dCXNW2HCSCqYI0ZoAqEOSAjRWmmlKcYgFvN4B4S+zo/f8kg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@remix-run/router/-/router-1.5.0.tgz}
+    name: '@remix-run/router'
+    version: 1.5.0
+    engines: {node: '>=14'}
+    dev: true
 
   registry.npmmirror.com/@rollup/pluginutils@4.2.1:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@rollup/pluginutils/-/pluginutils-4.2.1.tgz}
@@ -6409,6 +6422,35 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  registry.npmmirror.com/react-router-dom@6.10.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-E5dfxRPuXKJqzwSe/qGcqdwa18QiWC6f3H3cWXM24qj4N0/beCIf/CWTipop2xm7mR0RCS99NnaqPNjHtrAzCg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-router-dom/-/react-router-dom-6.10.0.tgz}
+    id: registry.npmmirror.com/react-router-dom/6.10.0
+    name: react-router-dom
+    version: 6.10.0
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': registry.npmmirror.com/@remix-run/router@1.5.0
+      react: registry.npmmirror.com/react@18.2.0
+      react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+      react-router: registry.npmmirror.com/react-router@6.10.0(react@18.2.0)
+    dev: true
+
+  registry.npmmirror.com/react-router@6.10.0(react@18.2.0):
+    resolution: {integrity: sha512-Nrg0BWpQqrC3ZFFkyewrflCud9dio9ME3ojHCF/WLsprJVzkq3q3UeEhMCAW1dobjeGbWgjNn/PVF6m46ANxXQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-router/-/react-router-6.10.0.tgz}
+    id: registry.npmmirror.com/react-router/6.10.0
+    name: react-router
+    version: 6.10.0
+    engines: {node: '>=14'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': registry.npmmirror.com/@remix-run/router@1.5.0
+      react: registry.npmmirror.com/react@18.2.0
+    dev: true
+
   registry.npmmirror.com/react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react/-/react-18.2.0.tgz}
     name: react
@@ -7362,6 +7404,17 @@ packages:
       eslint: registry.npmmirror.com/eslint@8.38.0
       rollup: registry.npmmirror.com/rollup@2.79.1
       vite: registry.npmmirror.com/vite@4.2.1(@types/node@18.15.11)(sass@1.62.0)
+    dev: true
+
+  registry.npmmirror.com/vite-plugin-monaco-editor@1.1.0(monaco-editor@0.34.1):
+    resolution: {integrity: sha512-IvtUqZotrRoVqwT0PBBDIZPNraya3BxN/bfcNfnxZ5rkJiGcNtO5eAOWWSgT7zullIAEqQwxMU83yL9J5k7gww==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vite-plugin-monaco-editor/-/vite-plugin-monaco-editor-1.1.0.tgz}
+    id: registry.npmmirror.com/vite-plugin-monaco-editor/1.1.0
+    name: vite-plugin-monaco-editor
+    version: 1.1.0
+    peerDependencies:
+      monaco-editor: '>=0.33.0'
+    dependencies:
+      monaco-editor: registry.npmmirror.com/monaco-editor@0.34.1
     dev: true
 
   registry.npmmirror.com/vite-plugin-sass-dts@1.3.3(postcss@8.4.22)(prettier@2.7.1)(sass@1.62.0)(vite@4.2.1):

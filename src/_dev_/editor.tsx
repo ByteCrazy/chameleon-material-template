@@ -13,33 +13,19 @@ import {
 import { RollbackOutlined } from '@ant-design/icons';
 import { DesignerExports } from '@chamn/engine/dist/plugins/Designer';
 import { EmptyPage } from '@chamn/model';
+import pkg from '../../package.json';
 
 const { DisplaySourceSchema, DEFAULT_PLUGIN_LIST } = plugins;
 
+console.log('customMaterial', customMaterial.setter);
 const win = window as any;
 win.React = React;
 win.ReactDOM = ReactDOM;
 win.ReactDOMClient = ReactDOMClient;
 
-// 你可以使用自定的物料组件库
 const assetPackagesList = [
   {
-    package: '@chamn/mock-material',
-    globalName: 'antd',
-    resources: [
-      {
-        src: 'https://cdn.bootcdn.net/ajax/libs/antd/5.1.2/reset.css',
-      },
-      {
-        src: 'https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.7/dayjs.min.js',
-      },
-      {
-        src: 'https://cdn.bootcdn.net/ajax/libs/antd/5.1.2/antd.js',
-      },
-    ],
-  },
-  {
-    package: 'customComponent',
+    package: pkg.name,
     globalName: 'ChameleonMaterialDemo',
     resources: [
       {
@@ -48,6 +34,7 @@ const assetPackagesList = [
     ],
   },
 ];
+console.log('🚀 ~ file: editor.tsx:37 ~ assetPackagesList:', assetPackagesList);
 
 export const Editor = () => {
   const [ready, setReady] = useState(false);

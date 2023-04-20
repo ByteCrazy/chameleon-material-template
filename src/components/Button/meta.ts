@@ -6,8 +6,8 @@ export const ButtonMeta: CMaterialType = {
   title: '按钮',
   props: [],
   npm: {
-    package: '@chamn/material',
-    version: '0.0.1',
+    package: __PACKAGE_NAME__ || '',
+    version: __PACKAGE_VERSION__,
     destructuring: true,
     exportName: 'Button',
   },
@@ -15,3 +15,5 @@ export const ButtonMeta: CMaterialType = {
 };
 
 export default [ButtonMeta];
+
+export type A = string;

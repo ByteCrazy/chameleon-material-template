@@ -1,4 +1,5 @@
-/* eslint-disable no-undef */
+import monacoEditorPlugin from 'vite-plugin-monaco-editor';
+
 // 开发模式默认读取 index.html 作为开发模式入口
 // entry 作为打包库入口
 const LIB_NAME = process.env.LIB_NAME;
@@ -11,6 +12,7 @@ let buildConfig: any = {
       __PACKAGE_NAME__: JSON.stringify(require('./package.json').name),
       'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
     },
+    plugins: [monacoEditorPlugin({})],
   },
 };
 
@@ -78,7 +80,7 @@ if (LIB_NAME) {
   };
 
   buildConfig = libConfig;
-  if (process.env.BUILD_TYPE === 'META') {
+  if (process.env.LIB_NAME === 'meta') {
     buildConfig = metaConfig;
   }
 }
