@@ -9,7 +9,6 @@
     "dev": "cross-env DEV=true build-script",
     "build": "pnpm run build:lib && pnpm run build:meta",
     "build:lib": "cross-env LIB_NAME=comp  build-script --build",
-    "build:lib:dev": "cross-env DEV=true LIB_NAME=comp build-script --build --watch",
     "build:meta": "cross-env LIB_NAME=meta build-script --build",
     "lint": "eslint --ext .tsx,.ts src/",
     "prettier": "prettier --write ./src",

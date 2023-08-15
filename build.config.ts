@@ -1,20 +1,6 @@
 import monacoEditorPlugin from 'vite-plugin-monaco-editor';
 import path from 'node:path';
 
-const layoutEntry = path.resolve(__dirname, 'index.html');
-const renderEntry = path.resolve(__dirname, './src/_dev_/render.html');
-
-let inputConfig = {};
-
-if (process.env.DEV) {
-  inputConfig = {
-    input: {
-      main: layoutEntry,
-      nested: renderEntry,
-    },
-  };
-}
-
 // 开发模式默认读取 index.html 作为开发模式入口
 // entry 作为打包库入口
 const LIB_NAME = process.env.LIB_NAME;
@@ -42,11 +28,6 @@ if (LIB_NAME) {
     },
     // 额外的 vite 配置
     vite: {
-      build: {
-        copyPublicDir: false,
-        emptyOutDir: process.env.DEV ? false : true,
-        outDir: process.env.DEV ? 'public-dev' : 'dist',
-      },
       define: {
         __PACKAGE_VERSION__: JSON.stringify(require('./package.json').version),
         __PACKAGE_NAME__: JSON.stringify(require('./package.json').name),
@@ -67,9 +48,6 @@ if (LIB_NAME) {
     // 额外的 vite 配置
     vite: {
       build: {
-        outDir: process.env.DEV ? 'public-dev' : 'dist',
-        copyPublicDir: false,
-        emptyOutDir: false,
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css' && LIB_NAME !== 'index')
             return `${LIB_NAME}.css`;
