@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@ant-design/icons": "^5.0.1",
-    "@chamn/build-script": "^0.0.10",
+    "@chamn/build-script": "^0.0.18",
     "@chamn/engine": "^0.0.18",
     "@chamn/model": "^0.0.18",
     "@chamn/render": "^0.0.18",
