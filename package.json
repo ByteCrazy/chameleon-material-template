@@ -5,7 +5,7 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "start": "npm run build:lib:dev & cross-env DEV=true build-script",
+    "start": "cross-env DEV=true build-script",
     "dev": "cross-env DEV=true build-script",
     "build": "pnpm run build:lib && pnpm run build:meta",
     "build:lib": "cross-env LIB_NAME=comp  build-script --build",
