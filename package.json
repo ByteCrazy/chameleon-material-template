@@ -5,8 +5,7 @@
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "copyAssets": "sh ./scripts/copyAssets.sh",
-    "start": "npm run copyAssets && npm run build:lib:dev & cross-env DEV=true build-script",
+    "start": "npm run build:lib:dev & cross-env DEV=true build-script",
     "dev": "cross-env DEV=true build-script",
     "build": "pnpm run build:lib && pnpm run build:meta",
     "build:lib": "cross-env LIB_NAME=comp  build-script --build",

@@ -6,6 +6,7 @@ export const ButtonMeta: CMaterialType = {
   title: '按钮',
   props: [],
   npm: {
+    name: 'Button',
     package: __PACKAGE_NAME__ || '',
     version: __PACKAGE_VERSION__,
     destructuring: true,

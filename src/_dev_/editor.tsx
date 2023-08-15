@@ -9,15 +9,56 @@ import {
   EnginContext,
   InnerComponentMeta,
   plugins,
+  LayoutPropsType,
+  collectVariable,
+  flatObject,
 } from '@chamn/engine';
 import { RollbackOutlined } from '@ant-design/icons';
-import { DesignerExports } from '@chamn/engine/dist/plugins/Designer';
 import { EmptyPage } from '@chamn/model';
 import pkg from '../../package.json';
+import { DesignerPluginInstance } from '@chamn/engine/dist/plugins/Designer/type';
+import { getThirdLibs } from '@chamn/render';
+import renderAsURL from '../../node_modules/@chamn/render/dist/index.umd.js?url';
 
 const { DisplaySourceSchema, DEFAULT_PLUGIN_LIST } = plugins;
 
-console.log('customMaterial', customMaterial.setter);
+const customRender: LayoutPropsType['customRender'] = async ({
+  iframe: iframeContainer,
+  assets,
+  page,
+  pageModel,
+  ready,
+}) => {
+  await iframeContainer.loadUrl('/src/_dev_/render.html');
+
+  const iframeWindow = iframeContainer.getWindow()!;
+  const iframeDoc = iframeContainer.getDocument()!;
+  const IframeReact = iframeWindow.React!;
+  const IframeReactDOM = iframeWindow.ReactDOMClient!;
+  const CRender = iframeWindow.CRender!;
+
+  // 从子窗口获取物料对象
+  const componentCollection = collectVariable(assets, iframeWindow);
+  const components = flatObject(componentCollection);
+  const thirdLibs = getThirdLibs(componentCollection, page?.thirdLibs || []);
+
+  const App = IframeReact?.createElement(CRender.DesignRender, {
+    adapter: CRender?.ReactAdapter,
+    page: page,
+    pageModel: pageModel,
+    components,
+    $$context: {
+      thirdLibs,
+    },
+    onMount: (designRenderInstance) => {
+      ready(designRenderInstance);
+    },
+  });
+
+  IframeReactDOM.createRoot(iframeDoc.getElementById('app')!).render(App);
+};
+
+// console.log('customMaterial', customMaterial.setter);
 const win = window as any;
 win.React = React;
 win.ReactDOM = ReactDOM;
@@ -26,15 +67,10 @@ win.ReactDOMClient = ReactDOMClient;
 const assetPackagesList = [
   {
     package: pkg.name,
-    globalName: 'ChameleonMaterialDemo',
-    resources: [
-      {
-        src: './index.umd.js',
-      },
-    ],
+    globalName: 'ChamnCustomComponent',
+    resources: [],
   },
 ];
-console.log('🚀 ~ file: editor.tsx:37 ~ assetPackagesList:', assetPackagesList);
 
 export const Editor = () => {
   const [ready, setReady] = useState(false);
@@ -50,11 +86,13 @@ export const Editor = () => {
   }, []);
 
   const onReady = useCallback(async (ctx: EnginContext) => {
-    const designer = await ctx.pluginManager.onPluginReadyOk('Designer');
+    const designer = await ctx.pluginManager.get<DesignerPluginInstance>(
+      'Designer'
+    );
     const reloadPage = async () => {
       setTimeout(() => {
-        const designerExports = designer?.exports as DesignerExports;
-        designerExports.reload();
+        const designerExports = designer?.export;
+        designerExports?.reload();
       }, 0);
     };
 
@@ -87,7 +125,7 @@ export const Editor = () => {
           style={{ marginRight: '10px' }}
           onClick={async () => {
             const res = await ctx.pluginManager.get('History');
-            res?.exports.preStep();
+            res?.export.preStep();
           }}
         >
           <RollbackOutlined />
@@ -96,7 +134,7 @@ export const Editor = () => {
           style={{ marginRight: '10px' }}
           onClick={async () => {
             const res = await ctx.pluginManager.get('History');
-            res?.exports.nextStep();
+            res?.export.nextStep();
           }}
         >
           <RollbackOutlined
@@ -197,14 +235,21 @@ export const Editor = () => {
       material={[...InnerComponentMeta, ...customMaterial.meta]}
       // 传入组件物料对应的 js 运行库，只能使用 umd 模式的 js
       onReady={onReady}
+      beforePluginRun={({ pluginManager }) => {
+        pluginManager.customPlugin('Designer', (pluginInstance) => {
+          pluginInstance.ctx.config.customRender = customRender;
+          return pluginInstance;
+        });
+      }}
+      renderJSUrl={renderAsURL}
     />
   );
 };
 
 if (import.meta.hot) {
   // !!! do not delete newModule param, else hot reload will not trigger
-  import.meta.hot.accept(['../meta'], (newModule) => {
-    console.log('met change');
-    location.reload();
-  });
+  // import.meta.hot.accept(['../meta'], (newModule) => {
+  //   console.log('met change');
+  //   location.reload();
+  // });
 }

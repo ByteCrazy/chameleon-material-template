@@ -1,4 +1,19 @@
 import monacoEditorPlugin from 'vite-plugin-monaco-editor';
+import path from 'node:path';
+
+const layoutEntry = path.resolve(__dirname, 'index.html');
+const renderEntry = path.resolve(__dirname, './src/_dev_/render.html');
+
+let inputConfig = {};
+
+if (process.env.DEV) {
+  inputConfig = {
+    input: {
+      main: layoutEntry,
+      nested: renderEntry,
+    },
+  };
+}
 
 // 开发模式默认读取 index.html 作为开发模式入口
 // entry 作为打包库入口
@@ -6,29 +21,12 @@ const LIB_NAME = process.env.LIB_NAME;
 let buildConfig: any = {
   entry: './src/index.tsx',
   vite: {
-    publicDir: 'public-dev',
     define: {
       __PACKAGE_VERSION__: JSON.stringify(require('./package.json').version),
       __PACKAGE_NAME__: JSON.stringify(require('./package.json').name),
       'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
     },
-    plugins: [
-      monacoEditorPlugin({}),
-      {
-        name: 'hot-reload-component-lib',
-        configureServer(server) {
-          server.watcher
-            .add(['./public-dev/**/*'])
-            .on('change', (path, stats) => {
-              server.ws.send('materialComponent:change', {
-                msg: 'hello232323',
-                path,
-                stats,
-              });
-            });
-        },
-      },
-    ],
+    plugins: [monacoEditorPlugin({})],
   },
 };
 
