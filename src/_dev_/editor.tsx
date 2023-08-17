@@ -19,6 +19,10 @@ import pkg from '../../package.json';
 import { DesignerPluginInstance } from '@chamn/engine/dist/plugins/Designer/type';
 import { getThirdLibs } from '@chamn/render';
 import renderAsURL from '../../node_modules/@chamn/render/dist/index.umd.js?url';
+import { loader } from '@monaco-editor/react';
+
+loader.config({ paths: { vs: 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.37.1/min/vs' } });
+loader.init();
 
 const { DisplaySourceSchema, DEFAULT_PLUGIN_LIST } = plugins;
 
