@@ -29,4 +29,6 @@ export default {
   meta: metaList,
   setter: setterMap,
   version: __PACKAGE_VERSION__,
+  pkgName: __PACKAGE_NAME__,
+  globalName: __GLOBAL_LIB_NAME__,
 };

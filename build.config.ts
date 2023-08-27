@@ -1,25 +1,27 @@
-import monacoEditorPlugin from 'vite-plugin-monaco-editor';
-import path from 'node:path';
+import pgk from './package.json';
+const GLOBAL_LIB_NAME = 'ChameleonMaterialDemo';
 
+const envDefine = {
+  __PACKAGE_VERSION__: JSON.stringify(pgk.version),
+  __PACKAGE_NAME__: JSON.stringify(pgk.name),
+  'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  __GLOBAL_LIB_NAME__: JSON.stringify(GLOBAL_LIB_NAME),
+};
 // 开发模式默认读取 index.html 作为开发模式入口
 // entry 作为打包库入口
 const LIB_NAME = process.env.LIB_NAME;
 let buildConfig: any = {
   entry: './src/index.tsx',
   vite: {
-    define: {
-      __PACKAGE_VERSION__: JSON.stringify(require('./package.json').version),
-      __PACKAGE_NAME__: JSON.stringify(require('./package.json').name),
-      'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
-    },
-    plugins: [monacoEditorPlugin({})],
+    define: envDefine,
+    plugins: [],
   },
 };
 
 if (LIB_NAME) {
   const libConfig = {
     entry: './src/index.tsx',
-    libName: 'ChameleonMaterialDemo',
+    libName: GLOBAL_LIB_NAME,
     formats: process.env.DEV ? ['umd'] : ['es', 'cjs', 'umd'],
     fileName: 'index',
     external: ['react'],
@@ -28,17 +30,13 @@ if (LIB_NAME) {
     },
     // 额外的 vite 配置
     vite: {
-      define: {
-        __PACKAGE_VERSION__: JSON.stringify(require('./package.json').version),
-        __PACKAGE_NAME__: JSON.stringify(require('./package.json').name),
-        'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
-      },
+      define: {},
     },
   };
 
   const metaConfig = {
     entry: './src/meta.tsx',
-    libName: 'ChameleonMaterialDemoMeta',
+    libName: `${GLOBAL_LIB_NAME}Meta`,
     formats: ['es', 'cjs'],
     fileName: 'meta',
     external: ['react'],
@@ -48,6 +46,7 @@ if (LIB_NAME) {
     // 额外的 vite 配置
     vite: {
       build: {
+        emptyOutDir: false,
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css' && LIB_NAME !== 'index')
             return `${LIB_NAME}.css`;
@@ -63,11 +62,7 @@ if (LIB_NAME) {
           },
         },
       },
-      define: {
-        __PACKAGE_VERSION__: JSON.stringify(require('./package.json').version),
-        __PACKAGE_NAME__: JSON.stringify(require('./package.json').name),
-        'process.env.NODE_ENV': `"${process.env.NODE_ENV}"`,
-      },
+      define: envDefine,
     },
   };
 
@@ -77,4 +72,4 @@ if (LIB_NAME) {
   }
 }
 
-module.exports = buildConfig;
+export default buildConfig;
