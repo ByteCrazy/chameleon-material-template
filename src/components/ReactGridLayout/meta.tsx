@@ -1,4 +1,4 @@
-import { CMaterialType } from '@chamn/model';
+import { CMaterialType, CNode } from '@chamn/model';
 import { snippets, snippetsGridItem } from './snippets';
 import { LayoutWrap } from './edit/layoutWrap';
 import { useEffect, useState } from 'react';
@@ -69,8 +69,24 @@ export const ReactGridItemMeta: CMaterialType = {
     },
     wrapComponent: (Comp, options) => {
       return (props: any) => {
-        return <Comp {...props} {...options} />;
+        return <Comp {...props} {...options} dev={true} />;
       };
+    },
+    canDropNode: async (node, params) => {
+      const { dropNode } = params;
+      if (!dropNode) {
+        return false;
+      }
+      if (dropNode.value.componentName === 'ReactGridLayout') {
+        return true;
+      }
+
+      return false;
+    },
+    onCopy: async (node) => {
+      node.props.x.updateValue('');
+      node.props.y.updateValue('');
+      return true;
     },
   },
   snippets: snippetsGridItem,

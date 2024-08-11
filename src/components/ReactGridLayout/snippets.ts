@@ -18,8 +18,8 @@ export const snippetsGridItem: SnippetsType[] = [
     description: '高级布局容器',
     schema: {
       props: {
-        width: 2,
-        height: 2,
+        w: 6,
+        h: 5,
       },
     },
   },

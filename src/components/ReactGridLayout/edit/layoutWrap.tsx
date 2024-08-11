@@ -45,9 +45,9 @@ export const LayoutWrap = (
       });
     });
     const responseJudge = debounce(() => {
+      console.log('change sun reeize');
       const sunWinW = props.subWin!.innerWidth;
       const pointInfo = breakpoints.find((el) => el.w > sunWinW);
-
       if (pointInfo?.c && grid.getColumn() !== pointInfo.c) {
         grid.column(pointInfo?.c);
       }
@@ -61,7 +61,6 @@ export const LayoutWrap = (
       animate={true}
       staticGrid={false}
       onMount={(grid) => {
-        console.log('🚀 ~ grid:', grid);
         ref.current = grid;
         initEditLogic(grid);
         restProps.onMount?.(grid);

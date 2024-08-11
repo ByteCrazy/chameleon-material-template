@@ -11,6 +11,9 @@ dependencies:
   antd:
     specifier: ^5.4.2
     version: registry.npmmirror.com/antd@5.4.2(react-dom@18.2.0)(react@18.2.0)
+  clsx:
+    specifier: ^2.1.1
+    version: 2.1.1
   gridstack:
     specifier: ^10.3.1
     version: 10.3.1
@@ -2600,6 +2603,11 @@ packages:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
     dev: true
+
+  /clsx@2.1.1:
+    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
+    engines: {node: '>=6'}
+    dev: false
 
   /co@4.6.0:
     resolution: {integrity: sha1-bqa989hTrlTMuOR7+gvz+QMfsYQ=}

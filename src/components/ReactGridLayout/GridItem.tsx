@@ -4,6 +4,8 @@ import { forwardRef, useContext, useEffect, useMemo, useRef } from 'react';
 import { GridItemInstance } from './type';
 import { CNode } from '@chamn/model';
 import { GridContext } from './context';
+import styles from './style.module.scss';
+import clsx from 'clsx';
 
 export const GridItem = forwardRef<GridItemInstance, any>(
   (
@@ -14,6 +16,7 @@ export const GridItem = forwardRef<GridItemInstance, any>(
       x: number;
       y: number;
       node?: CNode;
+      dev?: boolean;
     },
     ref
   ) => {
@@ -36,25 +39,51 @@ export const GridItem = forwardRef<GridItemInstance, any>(
     return (
       <div
         className="grid-stack-item"
-        style={{
-          overflow: 'hidden',
-        }}
         ref={refDom}
         data-grid-id={id}
         gs-w={props.w}
         gs-h={props.h}
         gs-x={props.x}
         gs-y={props.y}
+        style={{
+          overflow: 'hidden',
+          padding: '2px',
+        }}
       >
-        <div
-          className="grid-stack-item-content"
-          style={{
-            border: '1px dashed gray',
-            overflow: 'hidden',
-          }}
-        >
-          {props.children}
-        </div>
+        {props.dev && (
+          <div
+            className={clsx(['grid-drag-handler', styles.dragIcon])}
+            style={{
+              position: 'absolute',
+              top: 8,
+              right: 6,
+              width: '16px',
+              height: '18px',
+              zIndex: 999,
+              padding: '2px',
+              backgroundColor: 'rgba(0,0,0,0.1)',
+            }}
+          >
+            <svg
+              style={{
+                transform: 'rotate(45deg)',
+              }}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"
+              />
+            </svg>
+          </div>
+        )}
+
+        {props.children}
       </div>
     );
   }

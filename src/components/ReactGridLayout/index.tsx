@@ -48,6 +48,9 @@ export const ReactGridLayout = ({
           breakpointForWindow: false,
           breakpoints: breakpoints,
         },
+        draggable: {
+          handle: '.grid-drag-handler',
+        },
       },
       id
     );
@@ -71,13 +74,7 @@ export const ReactGridLayout = ({
 
   return (
     <GridContext.Provider value={ctx}>
-      <div
-        id={id}
-        className="grid-stack"
-        style={{
-          minHeight: '100px',
-        }}
-      >
+      <div id={id} className="grid-stack" style={{}}>
         {props.children}
       </div>
     </GridContext.Provider>

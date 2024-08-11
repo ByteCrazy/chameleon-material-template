@@ -4,6 +4,7 @@ import loadjs from 'loadjs';
 import 'gridstack/dist/gridstack.min.css';
 import 'gridstack/dist/gridstack-extra.min.css';
 import '../components/ReactGridLayout/layout.scss';
+import '../components/ReactGridLayout/style.module.scss';
 
 loadjs([renderAsURL, gridstackURL], () => {
   console.log('load render.umd.js success');
