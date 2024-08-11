@@ -88,6 +88,17 @@ export const ReactGridItemMeta: CMaterialType = {
       node.props.y.updateValue('');
       return true;
     },
+    onNewAdd: async (node, params) => {
+      const { dropNode } = params;
+      if (!dropNode) {
+        return false;
+      }
+      if (dropNode.value.componentName === 'ReactGridLayout') {
+        return true;
+      }
+
+      return false;
+    },
   },
   snippets: snippetsGridItem,
 };
