@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import ReactDOMClient from 'react-dom/client';
 import '@chamn/engine/dist/style.css';
 import customMaterial from '../meta';
+console.log('🚀 ~ customMaterial:', customMaterial);
 import {
   Engine,
   EnginContext,
@@ -18,6 +19,7 @@ import { DesignerPluginInstance } from '@chamn/engine/dist/plugins/Designer/type
 import { collectVariable, flatObject, getThirdLibs } from '@chamn/render';
 import renderAsURL from '../../node_modules/@chamn/render/dist/index.umd.js?url';
 import { loader } from '@monaco-editor/react';
+import * as componentLibs from '../components/index';
 
 loader.config({
   paths: {
@@ -33,15 +35,24 @@ const customRender: LayoutPropsType['customRender'] = async ({
   assets,
   page,
   pageModel,
+  beforeInitRender,
   ready,
 }) => {
   await iframeContainer.loadUrl('/src/_dev_/render.html');
-
+  beforeInitRender?.();
   const iframeWindow = iframeContainer.getWindow()!;
   const iframeDoc = iframeContainer.getDocument()!;
+
+  (iframeWindow as any).ChamnCustomComponent = componentLibs;
+
   const IframeReact = iframeWindow.React!;
   const IframeReactDOM = iframeWindow.ReactDOMClient!;
   const CRender = iframeWindow.CRender!;
+
+  console.log(
+    '[parent View] load render.umd.js is success',
+    iframeWindow.CRender
+  );
 
   // 从子窗口获取物料对象
   const componentCollection = collectVariable(assets, iframeWindow);

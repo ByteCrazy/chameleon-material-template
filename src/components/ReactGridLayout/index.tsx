@@ -1,17 +1,85 @@
-import GridLayout from 'react-grid-layout';
+import { GridStack } from 'gridstack';
+import 'gridstack/dist/gridstack.min.css';
+import 'gridstack/dist/gridstack-extra.min.css';
+import './layout.scss';
+import { useEffect, useMemo, useState } from 'react';
+import { EnginContext } from '@chamn/engine';
+import {
+  getDefaultContextValue,
+  GridContext,
+  GridContextType,
+} from './context';
+import { breakpoints } from './config';
 
-export const ReactGridLayout = () => {
+export type ReactGridLayoutPropsType = {
+  children: any;
+  onMount: (grid: GridStack) => void;
+  ctx: EnginContext;
+  subWin?: Window;
+  staticGrid?: boolean;
+  animate?: boolean;
+};
+
+export const ReactGridLayout = ({
+  subWin,
+  staticGrid,
+  animate,
+  ...props
+}: ReactGridLayoutPropsType) => {
+  const [ctx, setCtx] = useState<GridContextType>(getDefaultContextValue());
+  const id = useMemo(() => {
+    return Math.random().toString(32).slice(3, 9);
+  }, []);
+  useEffect(() => {
+    const tempGridStack: typeof GridStack =
+      (subWin as any)?.GridStack || GridStack;
+
+    var grid = tempGridStack.init(
+      {
+        cellHeight: '30px',
+        margin: 3,
+        column: 24,
+        float: true,
+        minRow: 3,
+        animate: animate || false,
+        staticGrid: staticGrid ?? true,
+        columnOpts: {
+          layout: 'moveScale',
+          breakpointForWindow: false,
+          breakpoints: breakpoints,
+        },
+      },
+      id
+    );
+    if (!grid) {
+      return;
+    }
+
+    props.onMount?.(grid);
+    setCtx((oldVal) => {
+      return {
+        ...oldVal,
+        gridStack: grid,
+        ready: true,
+      };
+    });
+
+    ctx.onMount?.forEach((el) => {
+      el(grid);
+    });
+  }, []);
+
   return (
-    <GridLayout className="layout" cols={12} rowHeight={30} width={1200}>
-      <div key="a" data-grid={{ x: 0, y: 0, w: 1, h: 2, static: true }}>
-        a
+    <GridContext.Provider value={ctx}>
+      <div
+        id={id}
+        className="grid-stack"
+        style={{
+          minHeight: '100px',
+        }}
+      >
+        {props.children}
       </div>
-      <div key="b" data-grid={{ x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 }}>
-        b
-      </div>
-      <div key="c" data-grid={{ x: 4, y: 0, w: 1, h: 2 }}>
-        c
-      </div>
-    </GridLayout>
+    </GridContext.Provider>
   );
 };

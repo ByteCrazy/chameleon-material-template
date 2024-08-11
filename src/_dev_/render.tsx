@@ -1,15 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import ReactDOMAll from 'react-dom';
-import * as antd from 'antd';
-import * as componentLibs from '../components/index';
+import renderAsURL from '../../node_modules/@chamn/render/dist/index.umd.js?url';
+import gridstackURL from '../../node_modules/gridstack/dist/gridstack-all.js?url';
+import loadjs from 'loadjs';
+import 'gridstack/dist/gridstack.min.css';
+import 'gridstack/dist/gridstack-extra.min.css';
+import '../components/ReactGridLayout/layout.scss';
 
-import * as CRender from '@chamn/render';
-
-window.React = React;
-(window as any).ReactDOM = ReactDOMAll;
-(window as any).ReactDOMClient = ReactDOM;
-
-(window as any).CRender = CRender;
-
-(window as any).ChamnCustomComponent = componentLibs;
+loadjs([renderAsURL, gridstackURL], () => {
+  console.log('load render.umd.js success');
+});

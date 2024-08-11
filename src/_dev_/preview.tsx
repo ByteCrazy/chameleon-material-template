@@ -9,7 +9,7 @@ import {
   flatObject,
 } from '@chamn/render';
 import { AssetPackage, CPageDataType } from '@chamn/model';
-
+import * as componentLibs from '../components/index';
 const loadAssets = async (assets: AssetPackage[]) => {
   // 注入组件物料资源
   const assetLoader = new AssetLoader(assets);
@@ -28,19 +28,23 @@ export const Preview = () => {
   const [page, setPage] = useState<CPageDataType>();
   const renderHandle = useRender();
   const [loading, setLoading] = useState(true);
-  const [pageComponents, setPageComponents] = useState({});
+  const [pageComponents, setPageComponents] = useState(componentLibs);
   const loadPageAssets = async (assets: AssetPackage[]) => {
+    console.log('🚀 ~ loadPageAssets ~ assets:', assets);
     const components = await loadAssets(assets);
+    console.log('🚀 ~ loadPageAssets ~ components:', components);
     if (components) {
-      setPageComponents(components);
+      setPageComponents(components as any);
       setLoading(false);
     }
   };
   useEffect(() => {
     const localPage = localStorage.getItem('pageSchema');
+    console.log('🚀 ~ useEffect ~ localPage:', localPage);
     if (localPage) {
       const page: CPageDataType = JSON.parse(localPage);
       setPage(page);
+      setLoading(false);
       loadPageAssets(page.assets || []);
     }
   }, []);
